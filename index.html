@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geo Intent Forwarder</title>
+</head>
+<body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if the Web Share Target API is supported
+    if ('shareTarget' in navigator) {
+        navigator.shareTarget
+            .addEventListener('share', event => {
+                const sharedData = event.data;
+                if (sharedData.type === 'text/uri-list') {
+                    // Extract latitude and longitude from the shared URL
+                    const url = sharedData.items[0].uri;
+                    const match = url.match(/geo:([-+]?\d*\.?\d+),([-+]?\d*\.?\d+).*/);
+                    if (match && match.length === 3) {
+                        const latitude = match[1];
+                        const longitude = match[2];
+                        
+                        // Create intent URL for Garmin Explorer
+                        const garminIntentUrl = `explore://map/${latitude}/${longitude}/80000`;
+
+                        // Share intent URL with Garmin Explorer using Web Share API
+                        navigator.share({ url: garminIntentUrl })
+                            .then(() => console.log('Shared successfully'))
+                            .catch(error => console.error('Error sharing:', error));
+                    } else {
+                        console.error('Invalid geo URL:', url);
+                    }
+                }
+            });
+    } else {
+        console.error('Web Share Target API not supported');
+    }
+});
+
+</script>
+  een beetje van mezelf, en een beetje van chatGPT
+</body>
+</html>
