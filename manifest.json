@@ -1,7 +1,7 @@
 {
   "name": "Geo Intent Forwarder",
   "short_name": "Geo Forwarder",
-  "start_url": "/",
+  "start_url": "/geo2garmin/",
   "display": "standalone",
   "icons": [
     {
