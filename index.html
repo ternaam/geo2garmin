@@ -9,6 +9,12 @@
 <body>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/geo2garmin/sw.js',
+          {scope: '/geo2garmin/'}
+        )
+      }
     // Check if the Web Share Target API is supported
     if ('shareTarget' in navigator) {
         navigator.shareTarget
