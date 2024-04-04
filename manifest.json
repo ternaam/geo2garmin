@@ -16,5 +16,13 @@
     }
   ],
   "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "share_target": {
+    "action": "/share-geo2garmin/",
+    "method": "GET",
+    "params": {
+      "url": "url"
+    }
+  }
+
 }
